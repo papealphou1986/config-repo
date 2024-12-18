@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        # Route vers le service des consultations
+        - id: consultation-service
+          uri: lb://consultation-service
+          predicates:
+            - Path=/consultations/**
+
+        # Route vers le service des patients
+        - id: patient-service
+          uri: lb://patient-service
+          predicates:
+            - Path=/patients/**
+
+        # Route vers le service des dépenses
+        - id: depense-service
+          uri: lb://depense-service
+          predicates:
+            - Path=/depenses/**
+
+        # Route vers le service des médicaments
+        - id: medicament-service
+          uri: lb://medicament-service
+          predicates:
+            - Path=/medicaments/**
+
+        # Route vers le service des caisses
+        - id: caisse-service
+          uri: lb://caisse-service
+          predicates:
+            - Path=/caisses/**
+
+        # Route vers le service des paiements
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/payments/**
